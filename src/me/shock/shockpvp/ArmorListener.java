@@ -1,10 +1,14 @@
 package me.shock.shockpvp;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,10 +21,12 @@ public class ArmorListener implements Listener
 		plugin = instance;
 	}
 	
+	
 	/*
 	 * Invisible on sneak with leather boots
 	 * Deal more damage if no armor.
 	 */
+	
 	@EventHandler
 	public void toggleSneak(PlayerToggleSneakEvent event)
 	{
@@ -42,5 +48,28 @@ public class ArmorListener implements Listener
 				}
 			return;
 		}
+	}
+	
+	
+	/*
+	 * Change block at foot if player is invisible sneaking.
+	 */
+	
+	@EventHandler
+	public void onMove(PlayerMoveEvent event)
+	{
+		Player player = event.getPlayer();
+		if(player.isSneaking() && player.hasPermission("shockpvp.sneak"))
+		{
+			Location loc = player.getLocation();
+			Block block = loc.getBlock().getRelative(BlockFace.DOWN);
+			ItemStack blockType = new ItemStack(block.getType());
+			if(blockType.getType() == Material.GRASS)
+			{
+				block.setType(Material.DIRT);
+			}
+			return;
+		}
+		return;
 	}
 }
