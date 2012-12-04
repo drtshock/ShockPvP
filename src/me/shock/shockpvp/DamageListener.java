@@ -13,13 +13,13 @@ import org.bukkit.inventory.ItemStack;
 public class DamageListener implements Listener
 {
 
-	static Main plugin;
+	final Main plugin;
 	public DamageListener(Main instance)
 	{
 		plugin = instance;
 	}
 	
-	public static int noarmordamagemultiplier = plugin.getConfig().getInt("noarmordamagemultiplier");
+	double noarmordamagemultiplier = this.plugin.getConfig().getDouble("noarmordamagemultiplier");
 	
 	/*
 	 * Cancel players damage taken if in a boat with permission.

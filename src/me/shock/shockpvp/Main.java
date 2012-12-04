@@ -1,6 +1,6 @@
 package me.shock.shockpvp;
 
-import java.io.File;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.economy.Economy;
@@ -17,10 +17,10 @@ public class Main extends JavaPlugin
 	/*
 	 * Variables for config
 	 */
-	int deathexplodesize;
-	int deathexpdrop;
-	int deathmoneyloss;
-	int noarmordamagemultiplier;
+	double deathexplodesize;
+	double deathexpdrop;
+	double deathmoneyloss;
+	double noarmordamagemultiplier;
 	
 	//private Config config = new Config(this);
 	public FileConfiguration config;
@@ -33,17 +33,8 @@ public class Main extends JavaPlugin
 	public void onEnable()
 	{
 		PluginManager pm = getServer().getPluginManager();
-		File configFile = new File(getDataFolder() + "/config.yml");
-		if(!configFile.exists())
-		{
-			saveDefaultConfig();
-		}
 		
-		deathexplodesize = getConfig().getInt("deathexplodesize");
-		deathexpdrop = getConfig().getInt("deathexpdrop");
-		deathmoneyloss = getConfig().getInt("deathmoneyloss");
-		noarmordamagemultiplier = getConfig().getInt("NoArmorDamageMultiplier");
-		
+		loadConfig();
 		
 		pm.registerEvents(new DropListener(this), this);
 		pm.registerEvents(new InteractListener(this), this);
@@ -85,7 +76,7 @@ public class Main extends JavaPlugin
 		return econ != null;
 	}
 	
-	/*private void loadConfig() 
+	private void loadConfig() 
 	{
 		try 
 		{
@@ -106,6 +97,6 @@ public class Main extends JavaPlugin
 			e.printStackTrace();
 			// Hopefully never happens :o
 		}
-	}*/
+	}
 	
 }

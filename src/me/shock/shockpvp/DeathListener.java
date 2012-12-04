@@ -14,15 +14,15 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class DeathListener implements Listener
 {
 
-	static Main plugin;
+	final Main plugin;
 	public DeathListener(Main instance)
 	{
 		plugin = instance;
 	}
 	
-	public static int deathexplodesize = plugin.getConfig().getInt("deathexplodesize");
-	public static int deathexpdrop = plugin.getConfig().getInt("deathexpdrop");
-	public static int deathmoneyloss = plugin.getConfig().getInt("deathmoneyloss");
+	double deathexplodesize = this.plugin.getConfig().getDouble("deathexplodesize");
+	double deathexpdrop = this.plugin.getConfig().getDouble("deathexpdrop");
+	double deathmoneyloss = this.plugin.getConfig().getDouble("deathmoneyloss");
 	
 	public static Economy econ = null;
 	
