@@ -29,7 +29,7 @@ public class DamageListener implements Listener
 		if(entity instanceof Player)
 		{
 			Player player = ((Player) entity).getPlayer();
-			if(player.hasPermission("shockpvp.boatprotect"))
+			if(player.hasPermission("shockpvp.nodamage.inboat"))
 			{
 				Vehicle vehicle = (Vehicle) player.getVehicle();
 				if(vehicle instanceof Boat)
@@ -44,7 +44,9 @@ public class DamageListener implements Listener
 	
 	
 	/*
-	 * Cancel fall damage.
+	 * Cancel fall damage for everyone
+	 * Cancel drowning in water by permission.
+	 * Cancel lava damage by permission.
 	 */
 	
 	@EventHandler
@@ -54,7 +56,37 @@ public class DamageListener implements Listener
 		{
 			Entity entity = event.getEntity();
 			Player player = ((Player) entity).getPlayer();
-			if(player.hasPermission("shockpvp.nofalldamage"))
+			if(player.hasPermission("shockpvp.nodamage.fall"))
+			{
+				event.setCancelled(true);
+			}
+		}
+		
+		if((event.getCause() == EntityDamageEvent.DamageCause.DROWNING) && (event.getEntity() instanceof Player))
+		{
+			Entity entity = event.getEntity();
+			Player player = ((Player) entity).getPlayer();
+			if(player.hasPermission("shockpvp.nodamage.drown"))
+			{
+				event.setCancelled(true);
+			}
+		}
+		
+		if((event.getCause() == EntityDamageEvent.DamageCause.LAVA) && (event.getEntity() instanceof Player))
+		{
+			Entity entity = event.getEntity();
+			Player player = ((Player) entity).getPlayer();
+			if(player.hasPermission("shockpvp.nodamage.lava"))
+			{
+				event.setCancelled(true);
+			}
+		}
+		
+		if((event.getCause() == EntityDamageEvent.DamageCause.MAGIC) && (event.getEntity() instanceof Player))
+		{
+			Entity entity = event.getEntity();
+			Player player = ((Player) entity).getPlayer();
+			if(player.hasPermission("shockpvp.nodamage.potion"))
 			{
 				event.setCancelled(true);
 			}
