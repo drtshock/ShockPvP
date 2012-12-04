@@ -17,8 +17,9 @@ public class Main extends JavaPlugin
 	/*
 	 * Variables for config
 	 */
-	Double deathexplodesize;
-	Double deathexpdrop;
+	double deathexplodesize;
+	double deathexpdrop;
+	double deathmoneyloss;
 	
 	//private Config config = new Config(this);
 	FileConfiguration newConfig;
@@ -34,6 +35,8 @@ public class Main extends JavaPlugin
 		pm.registerEvents(new InteractListener(this), this);
 		pm.registerEvents(new LaunchListener(this), this);
 		pm.registerEvents(new DeathListener(this), this);
+		pm.registerEvents(new DamageListener(this), this);
+		pm.registerEvents(new ArmorListener(this), this);
 
 		
 		try 
@@ -79,6 +82,7 @@ public class Main extends JavaPlugin
 	
 			this.deathexplodesize = Double.valueOf(this.newConfig.getDouble("deathexplodesize"));
 			this.deathexpdrop = Double.valueOf(this.newConfig.getDouble("deathexpdrop"));
+			this.deathmoneyloss = Double.valueOf(this.newConfig.getDouble("deathmoneyloss"));
 			saveConfig();
 			this.log.info("[ShockPvP] config loaded");
 		}
