@@ -20,6 +20,7 @@ public class Main extends JavaPlugin
 	double deathexplodesize;
 	double deathexpdrop;
 	double deathmoneyloss;
+	double noarmordamagemultiplier;
 	
 	//private Config config = new Config(this);
 	FileConfiguration newConfig;
@@ -83,6 +84,7 @@ public class Main extends JavaPlugin
 			this.deathexplodesize = Double.valueOf(this.newConfig.getDouble("deathexplodesize"));
 			this.deathexpdrop = Double.valueOf(this.newConfig.getDouble("deathexpdrop"));
 			this.deathmoneyloss = Double.valueOf(this.newConfig.getDouble("deathmoneyloss"));
+			this.noarmordamagemultiplier = Double.valueOf(this.newConfig.getDouble("noarmordamagemultiplier"));
 			saveConfig();
 			this.log.info("[ShockPvP] config loaded");
 		}

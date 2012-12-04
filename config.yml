@@ -2,3 +2,5 @@
 # For help go http://www.dev.bukkit.org/server-mods/shockpvp
 deathexplodesize: 2
 deathexpdrop: 10
+deathmoneyloss: 10
+noarmordamagemultiplier: 2

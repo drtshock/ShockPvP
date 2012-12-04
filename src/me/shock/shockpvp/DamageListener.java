@@ -1,5 +1,6 @@
 package me.shock.shockpvp;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -8,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class DamageListener implements Listener
 {
@@ -17,6 +19,9 @@ public class DamageListener implements Listener
 	{
 		plugin = instance;
 	}
+	private FileConfiguration config;
+	
+	double noarmordamagemultiplier = config.getDouble("noarmordamagemultiplier");
 	
 	/*
 	 * Cancel players damage taken if in a boat with permission.
@@ -26,9 +31,17 @@ public class DamageListener implements Listener
 	public void onDamage(EntityDamageByEntityEvent event)
 	{
 		Entity entity = event.getEntity();
+		
 		if(entity instanceof Player)
 		{
 			Player player = ((Player) entity).getPlayer();
+			ItemStack[] item = player.getInventory().getArmorContents();
+			if(item.length == 0)
+			{
+				int damage = event.getDamage();
+				int newdamage = (int) (damage * noarmordamagemultiplier);
+				event.setDamage(newdamage);
+			}
 			if(player.hasPermission("shockpvp.nodamage.inboat"))
 			{
 				Vehicle vehicle = (Vehicle) player.getVehicle();
@@ -38,8 +51,6 @@ public class DamageListener implements Listener
 				}
 			}
 		}
-		else
-			return;
 	}
 	
 	

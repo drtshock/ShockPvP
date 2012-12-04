@@ -2,6 +2,6 @@ name: ShockPvP
 authors: ['drtshock']
 main: me.shock.shockpvp.Main
 version: 0.1
-depend:
+depend: [Vault]
 
 commands:

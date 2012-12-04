@@ -17,6 +17,10 @@ public class ArmorListener implements Listener
 		plugin = instance;
 	}
 	
+	/*
+	 * Invisible on sneak with leather boots
+	 * Deal more damage if no armor.
+	 */
 	@EventHandler
 	public void toggleSneak(PlayerToggleSneakEvent event)
 	{
@@ -39,5 +43,4 @@ public class ArmorListener implements Listener
 			return;
 		}
 	}
-	
 }
