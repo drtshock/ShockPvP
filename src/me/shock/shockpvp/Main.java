@@ -23,7 +23,7 @@ public class Main extends JavaPlugin
 	double noarmordamagemultiplier;
 	
 	//private Config config = new Config(this);
-	FileConfiguration newConfig;
+	public FileConfiguration config;
 	private Logger log = Bukkit.getLogger();
  	public static Economy econ = null;
 	
@@ -31,6 +31,8 @@ public class Main extends JavaPlugin
 	public void onEnable()
 	{
 		PluginManager pm = getServer().getPluginManager();
+		
+		loadConfig();
 		
 		pm.registerEvents(new DropListener(this), this);
 		pm.registerEvents(new InteractListener(this), this);
@@ -50,7 +52,6 @@ public class Main extends JavaPlugin
 			log.info("[ShockPvP] not using economy");
 		}
 		
-		loadConfig();
 	}
 	
 	public void onDisable()
@@ -78,13 +79,13 @@ public class Main extends JavaPlugin
 		try 
 		{
 			reloadConfig();
-			this.newConfig = getConfig();
-			this.newConfig.options().copyDefaults(true);
+			this.config = getConfig();
+			this.config.options().copyDefaults(true);
 	
-			this.deathexplodesize = Double.valueOf(this.newConfig.getDouble("deathexplodesize"));
-			this.deathexpdrop = Double.valueOf(this.newConfig.getDouble("deathexpdrop"));
-			this.deathmoneyloss = Double.valueOf(this.newConfig.getDouble("deathmoneyloss"));
-			this.noarmordamagemultiplier = Double.valueOf(this.newConfig.getDouble("noarmordamagemultiplier"));
+			this.deathexplodesize = Double.valueOf(this.config.getDouble("deathexplodesize"));
+			this.deathexpdrop = Double.valueOf(this.config.getDouble("deathexpdrop"));
+			this.deathmoneyloss = Double.valueOf(this.config.getDouble("deathmoneyloss"));
+			this.noarmordamagemultiplier = Double.valueOf(this.config.getDouble("noarmordamagemultiplier"));
 			saveConfig();
 			this.log.info("[ShockPvP] config loaded");
 		}

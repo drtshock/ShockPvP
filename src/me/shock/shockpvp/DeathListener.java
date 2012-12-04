@@ -5,7 +5,6 @@ import net.milkbowl.vault.economy.EconomyResponse;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,11 +20,9 @@ public class DeathListener implements Listener
 		plugin = instance;
 	}
 	
-	private FileConfiguration config;
-	
-	double deathexplodesize = config.getDouble("deathexplodesize");
-	double deathexpdrop = config.getDouble("deathexpdrop");
-	double deathmoneyloss = config.getDouble("deathmoneyloss");
+	double deathexplodesize = this.plugin.getConfig().getDouble("deathexplodesize");
+	double deathexpdrop = this.plugin.getConfig().getDouble("deathexpdrop");
+	double deathmoneyloss = this.plugin.getConfig().getDouble("deathmoneyloss");
 	
 	public static Economy econ = null;
 	
@@ -96,8 +93,5 @@ public class DeathListener implements Listener
 		{
 			event.setDroppedExp((int) deathexpdrop);
 		}
-		
 	}
-	
-	
 }

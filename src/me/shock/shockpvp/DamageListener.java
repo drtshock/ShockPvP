@@ -1,6 +1,5 @@
 package me.shock.shockpvp;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -19,9 +18,8 @@ public class DamageListener implements Listener
 	{
 		plugin = instance;
 	}
-	private FileConfiguration config;
 	
-	double noarmordamagemultiplier = config.getDouble("noarmordamagemultiplier");
+	double noarmordamagemultiplier = this.plugin.getConfig().getDouble("noarmordamagemultiplier");
 	
 	/*
 	 * Cancel players damage taken if in a boat with permission.
