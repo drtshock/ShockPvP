@@ -26,6 +26,8 @@ public class Main extends JavaPlugin
 	public FileConfiguration config;
 	private Logger log = Bukkit.getLogger();
  	public static Economy econ = null;
+ 	
+ 	public Main plugin;
 	
 	
 	public void onEnable()
