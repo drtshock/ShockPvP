@@ -7,6 +7,7 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 public class DamageListener implements Listener
 {
@@ -41,6 +42,20 @@ public class DamageListener implements Listener
 		else
 			return;
 		
+	}
+	
+	
+	/*
+	 * Cancel fall damage.
+	 */
+	
+	@EventHandler
+	public void onFall(EntityDamageEvent event)
+	{
+		if((event.getCause() == EntityDamageEvent.DamageCause.FALL) && (event.getEntity() instanceof Player))
+		{
+			event.setCancelled(true);
+		}
 	}
 	
 }
