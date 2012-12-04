@@ -54,7 +54,12 @@ public class DamageListener implements Listener
 	{
 		if((event.getCause() == EntityDamageEvent.DamageCause.FALL) && (event.getEntity() instanceof Player))
 		{
-			event.setCancelled(true);
+			Entity entity = event.getEntity();
+			Player player = ((Player) entity).getPlayer();
+			if(player.hasPermission("shockpvp.nofalldamage"))
+			{
+				event.setCancelled(true);
+			}
 		}
 	}
 	
