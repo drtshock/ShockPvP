@@ -1,0 +1,4 @@
+# Config for ShockPvP Plugin.
+# For help go http://www.dev.bukkit.org/server-mods/shockpvp
+deathexplodesize: 2
+deathexpdrop: 10

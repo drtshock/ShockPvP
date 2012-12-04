@@ -42,8 +42,8 @@ public class Main extends JavaPlugin
 		}
 		catch(Exception e)
 		{
-			log.info("[SimpleDisenchant] can't find vault :(");
-			log.info("[SimpleDisenchant] not using economy");
+			log.info("[ShockPvP] can't find vault :(");
+			log.info("[ShockPvP] not using economy");
 		}
 		
 		loadConfig();
