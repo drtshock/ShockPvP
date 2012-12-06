@@ -22,11 +22,11 @@ public class Main extends JavaPlugin
 	/*
 	 * Variables for config
 	 */
-	double deathexplodesize = 2;
-	double deathexpdrop = 10;
-	double deathmoneyloss=  10;
-	double noarmordamagemultiplier = 2;
-	double flashradius = 5;
+	private double deathexplodesize = 2;
+	private double deathexpdrop = 10;
+	private double deathmoneyloss=  10;
+	private double noarmordamagemultiplier = 2;
+	private double flashradius = 5;
 	
 	private Logger log = Bukkit.getLogger();
  	public static Economy econ = null;
@@ -140,4 +140,19 @@ public class Main extends JavaPlugin
 		}
 	}
 	
+	public final double getDeathExplodeSize() { 
+		return deathexplodesize; 
+	    }
+	public final double getDeathExpDrop() {
+		return deathexpdrop; 
+	    }
+	public final double getDeathMoneyLoss() { 
+		return deathmoneyloss; 
+		}
+	public final double getNoArmDamMult() { 
+		return noarmordamagemultiplier; 
+		}
+	public final double getFlashRadius() { 
+		return flashradius; 
+		}
 }

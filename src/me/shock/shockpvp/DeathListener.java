@@ -20,9 +20,9 @@ public class DeathListener implements Listener
 		plugin = instance;
 	}
 	
-	double deathexplodesize = this.plugin.deathexplodesize;
-	double deathexpdrop = this.plugin.deathexpdrop;
-	double deathmoneyloss = this.plugin.deathmoneyloss;
+	double deathexplodesize = this.plugin.getDeathExplodeSize();
+	double deathexpdrop = this.plugin.getDeathExpDrop();
+	double deathmoneyloss = this.plugin.getDeathMoneyLoss();
 	
 	public static Economy econ = null;
 	

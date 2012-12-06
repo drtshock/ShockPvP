@@ -28,7 +28,7 @@ public class LaunchListener implements Listener
 		plugin = instance;
 	}
 	
-	double flashRadius = this.plugin.flashradius;
+	double flashRadius = this.plugin.getFlashRadius();
 	
 	@EventHandler
 	public void onLaunch(ProjectileLaunchEvent event)
