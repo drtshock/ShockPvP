@@ -1,5 +1,6 @@
 package me.shock.shockpvp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Effect;
@@ -10,21 +11,24 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class LaunchListener implements Listener
 {
-
+	private ArrayList<Location> explodes = new ArrayList<Location>();
 	
 	final Main plugin;
+	
 	public LaunchListener(Main instance)
 	{
 		plugin = instance;
 	}
 	
-	double flashRadius;
+	double flashRadius = this.plugin.flashradius;
 	
 	@EventHandler
 	public void onLaunch(ProjectileLaunchEvent event)
@@ -77,14 +81,35 @@ public class LaunchListener implements Listener
 					Location loc = event.getEntity().getLocation();
 					List<Entity> entities = event.getEntity().getNearbyEntities(flashRadius, flashRadius, flashRadius);
 					
-					// Blind the nearby entities.
-					for(Entity entity : entities)
+					// Simulates explosion
+					explodes.add(loc);
+					loc.getWorld().createExplosion(loc, 3F);
+					
+					// Blind and slow the nearby players.
+					for (Entity ents : entities)
 					{
-						
+						if (ents instanceof Player) {
+							Player victim = (Player) ents;
+							victim.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
+							victim.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 0));
+						}
 					}
 				}
 			}
 		}
 		
+	}
+	
+	/*
+	 * Cancels block breaking on explosion
+	 */
+	@EventHandler
+	public void onEntityExplode(EntityExplodeEvent event) 
+	{
+		if (explodes.contains(event.getLocation())) 
+		{
+			event.blockList().clear();
+			explodes.remove(event.getLocation());
+		}
 	}
 }

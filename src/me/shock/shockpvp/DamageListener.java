@@ -19,7 +19,7 @@ public class DamageListener implements Listener
 		plugin = instance;
 	}
 	
-	double noarmordamagemultiplier = this.plugin.getConfig().getDouble("noarmordamagemultiplier");
+	double noarmordamagemultiplier = this.plugin.noarmordamagemultiplier;
 	
 	/*
 	 * Cancel players damage taken if in a boat with permission.
