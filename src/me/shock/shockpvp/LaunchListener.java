@@ -95,6 +95,48 @@ public class LaunchListener implements Listener
 						}
 					}
 				}
+				
+				// Concussion grenade.
+				if(player.hasPermission("shockpvp.grenade.concussion"))
+				{
+					Location loc = event.getEntity().getLocation();
+					List<Entity> entities = event.getEntity().getNearbyEntities(flashRadius, flashRadius, flashRadius);
+					
+					// Simulates explosion
+					explodes.add(loc);
+					loc.getWorld().createExplosion(loc, 3F);
+					
+					// Daze and slow nearby players.
+					for (Entity ents : entities)
+					{
+						if(ents instanceof Player)
+						{
+							Player victim = (Player) ents;
+							victim.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 0));
+							victim.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 100, 0));
+						}
+					}
+				}
+				
+				// Frag grenade
+				if(player.hasPermission("shockpvp.grenade.frag"))
+				{
+					Location loc = event.getEntity().getLocation();
+					loc.getWorld().createExplosion(loc, 1, false);
+				}
+				
+				// Smoke grenade
+				if(player.hasPermission("shockpvp.grenade.smoke"));
+				{
+					Location loc = event.getEntity().getLocation();
+					loc.getWorld().playEffect(loc, Effect.SMOKE, 1000);
+				}
+				
+				// Decoy grenade
+				if(player.hasPermission("shockpvp.grenade.decoy"));
+				Location loc = event.getEntity().getLocation();
+				loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 20);
+				loc.getWorld().playEffect(loc, Effect.BOW_FIRE, 10);
 			}
 		}
 		
