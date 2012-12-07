@@ -70,6 +70,63 @@ public class ArmorListener implements Listener
 			}
 			return;
 		}
-		return;
+		
+		// Get the players armor.
+		Material boots = player.getInventory().getBoots().getType();
+		Material legs = player.getInventory().getLeggings().getType();
+		Material chest = player.getInventory().getChestplate().getType();
+		Material helm = player.getInventory().getHelmet().getType();
+		
+		// Slow player with all diamond armor.
+		if  (boots == Material.DIAMOND_BOOTS
+				&& legs == Material.DIAMOND_LEGGINGS
+				&& chest == Material.DIAMOND_CHESTPLATE
+				&& helm == Material.DIAMOND_HELMET)
+			{
+				player.getVelocity().multiply(.75);
+			}
+		
+		// Slow player without chestplate.
+		if  (boots == Material.DIAMOND_BOOTS
+				&& legs == Material.DIAMOND_LEGGINGS
+				&& helm == Material.DIAMOND_HELMET)
+		{
+			player.getVelocity().multiply(.85);
+		}
+		
+		// Slow player without leggings
+		if  (boots == Material.DIAMOND_BOOTS
+				&& chest == Material.DIAMOND_CHESTPLATE
+				&& helm == Material.DIAMOND_HELMET)
+			{
+				player.getVelocity().multiply(.85);
+			}
+		
+		// Slow player without helmet
+		if  (boots == Material.DIAMOND_BOOTS
+				&& legs == Material.DIAMOND_LEGGINGS
+				&& chest == Material.DIAMOND_CHESTPLATE)
+			{
+				player.getVelocity().multiply(.78);
+			}
+		
+		// Slow player without boots.
+		if  (legs == Material.DIAMOND_LEGGINGS
+				&& chest == Material.DIAMOND_CHESTPLATE
+				&& helm == Material.DIAMOND_HELMET)
+			{
+				player.getVelocity().multiply(.79);
+			}
+		
+		// Speed up player with leather armor
+		if (boots == Material.LEATHER_BOOTS
+				&& legs == Material.LEATHER_LEGGINGS
+				&& chest == Material.LEATHER_CHESTPLATE
+				&& helm == Material.LEATHER_HELMET)
+		{
+			player.getVelocity().multiply(1.2);
+		}
+		
+		
 	}
 }
