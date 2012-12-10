@@ -18,6 +18,11 @@ public class InteractListener implements Listener
 		plugin = instance;
 	}
 	
+	/*
+	 * Doesn't work :(
+	 */
+	
+	/*
 	@EventHandler
 	public void onInteractEnderChest(PlayerInteractEvent event)
 	{
@@ -39,5 +44,6 @@ public class InteractListener implements Listener
 			
 		}
 	}
+	*/
 	
 }

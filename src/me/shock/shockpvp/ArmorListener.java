@@ -25,6 +25,7 @@ public class ArmorListener implements Listener
 	/*
 	 * Invisible on sneak with leather boots
 	 * Deal more damage if no armor.
+	 * Doesn't hide player while sneaking
 	 */
 	
 	@EventHandler
@@ -32,6 +33,8 @@ public class ArmorListener implements Listener
 	{
 		Player player = event.getPlayer();
 		ItemStack boots = player.getInventory().getBoots();
+		if(boots != null)
+		{
 		Material mat = boots.getType();
 		
 		if((player.hasPermission("shockpvp.sneak")) && (mat == Material.LEATHER_BOOTS))
@@ -49,12 +52,14 @@ public class ArmorListener implements Listener
 			return;
 		}
 	}
+	}
 	
 	
 	/*
 	 * Change block at foot if player is invisible sneaking.
 	 */
 	
+
 	@EventHandler
 	public void onMove(PlayerMoveEvent event)
 	{
@@ -71,13 +76,45 @@ public class ArmorListener implements Listener
 			return;
 		}
 		
+		/*
+		 * Need to check for empty armor.
+		 */
+		
 		// Get the players armor.
+		/*
+		ItemStack bootsi = player.getInventory().getBoots();
+		if(bootsi != null)
+		{
+			Material boots = player.getInventory().getBoots().getType();
+		}
+		ItemStack legsi = player.getInventory().getLeggings();
+		if(legsi != null)
+		{
+			Material legs = player.getInventory().getBoots().getType();
+		}
+		ItemStack chesti = player.getInventory().getBoots();
+		if(chesti != null)
+		{
+			Material chest = player.getInventory().getChestplate().getType();
+		}
+		ItemStack helmi = player.getInventory().getBoots();
+		if(helmi != null)
+		{
+			Material helm = player.getInventory().getBoots().getType();
+		}
+		*/
+		
+		/*
+		 * Doesn't work :(
 		Material boots = player.getInventory().getBoots().getType();
 		Material legs = player.getInventory().getLeggings().getType();
 		Material chest = player.getInventory().getChestplate().getType();
 		Material helm = player.getInventory().getHelmet().getType();
+		*/
 		
 		// Slow player with all diamond armor.
+		/*
+		 * Doesn't work :(
 		if  (boots == Material.DIAMOND_BOOTS
 				&& legs == Material.DIAMOND_LEGGINGS
 				&& chest == Material.DIAMOND_CHESTPLATE
@@ -126,7 +163,6 @@ public class ArmorListener implements Listener
 		{
 			player.getVelocity().multiply(1.2);
 		}
-		
-		
+		*/
 	}
 }

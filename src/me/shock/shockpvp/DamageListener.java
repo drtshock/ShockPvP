@@ -13,13 +13,12 @@ import org.bukkit.inventory.ItemStack;
 public class DamageListener implements Listener
 {
 
-	final Main plugin;
+	public Main plugin;
 	public DamageListener(Main instance)
 	{
-		plugin = instance;
+		this.plugin = instance;
 	}
 	
-	double noarmordamagemultiplier = this.plugin.getNoArmDamMult();
 	
 	/*
 	 * Cancel players damage taken if in a boat with permission.
@@ -29,6 +28,7 @@ public class DamageListener implements Listener
 	public void onDamage(EntityDamageByEntityEvent event)
 	{
 		Entity entity = event.getEntity();
+		double noarmordamagemultiplier = plugin.getConfig().getDouble("noarmordamagemultiplier");
 		
 		if(entity instanceof Player)
 		{
@@ -81,6 +81,7 @@ public class DamageListener implements Listener
 			}
 		}
 		
+		// No work :(
 		if((event.getCause() == EntityDamageEvent.DamageCause.LAVA) && (event.getEntity() instanceof Player))
 		{
 			Entity entity = event.getEntity();

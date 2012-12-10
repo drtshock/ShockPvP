@@ -21,14 +21,13 @@ public class LaunchListener implements Listener
 {
 	private ArrayList<Location> explodes = new ArrayList<Location>();
 	
-	final Main plugin;
+	public Main plugin;
 	
 	public LaunchListener(Main instance)
 	{
-		plugin = instance;
+		this.plugin = instance;
 	}
 	
-	double flashRadius = this.plugin.getFlashRadius();
 	
 	@EventHandler
 	public void onLaunch(ProjectileLaunchEvent event)
@@ -79,11 +78,12 @@ public class LaunchListener implements Listener
 				if(player.hasPermission("shockpvp.grenade.flash"))
 				{
 					Location loc = event.getEntity().getLocation();
+					double flashRadius = plugin.getConfig().getDouble("flashradius");
 					List<Entity> entities = event.getEntity().getNearbyEntities(flashRadius, flashRadius, flashRadius);
 					
 					// Simulates explosion
 					explodes.add(loc);
-					loc.getWorld().createExplosion(loc, 3F);
+					loc.getWorld().createExplosion(loc, .5F);
 					
 					// Blind and slow the nearby players.
 					for (Entity ents : entities)
@@ -96,15 +96,19 @@ public class LaunchListener implements Listener
 					}
 				}
 				
-				// Concussion grenade.
+				/* 
+				 * Concussion grenade.
+				 * 3F is too large of explosion. Try .5
+				 */
 				if(player.hasPermission("shockpvp.grenade.concussion"))
 				{
 					Location loc = event.getEntity().getLocation();
+					double flashRadius = plugin.getConfig().getDouble("flashradius");
 					List<Entity> entities = event.getEntity().getNearbyEntities(flashRadius, flashRadius, flashRadius);
 					
 					// Simulates explosion
 					explodes.add(loc);
-					loc.getWorld().createExplosion(loc, 3F);
+					loc.getWorld().createExplosion(loc, .5F);
 					
 					// Daze and slow nearby players.
 					for (Entity ents : entities)
@@ -119,6 +123,7 @@ public class LaunchListener implements Listener
 				}
 				
 				// Frag grenade
+				// Perfect :D
 				if(player.hasPermission("shockpvp.grenade.frag"))
 				{
 					Location loc = event.getEntity().getLocation();
@@ -126,6 +131,7 @@ public class LaunchListener implements Listener
 				}
 				
 				// Smoke grenade
+				// Doesn't work
 				if(player.hasPermission("shockpvp.grenade.smoke"));
 				{
 					Location loc = event.getEntity().getLocation();
@@ -133,6 +139,7 @@ public class LaunchListener implements Listener
 				}
 				
 				// Decoy grenade
+				// Not working
 				if(player.hasPermission("shockpvp.grenade.decoy"));
 				Location loc = event.getEntity().getLocation();
 				loc.getWorld().playEffect(loc, Effect.STEP_SOUND, 20);
@@ -144,6 +151,7 @@ public class LaunchListener implements Listener
 	
 	/*
 	 * Cancels block breaking on explosion
+	 * No work :(
 	 */
 	@EventHandler
 	public void onEntityExplode(EntityExplodeEvent event) 
